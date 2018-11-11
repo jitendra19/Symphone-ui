@@ -1,0 +1,22 @@
+.example-container {
+    display: flex;
+    overflow-x: hidden;
+    overflow-y: scroll;
+    flex-direction: column;
+    // width: 500px;
+    // height: 300px;
+  }
+
+.mat-column-position,
+.mat-column-name,
+.mat-column-weight,
+.mat-column-symbol {
+  flex: 1 0 500px;
+}
+
+tr.mat-header-row {
+  height: 30px !important;
+}
+tr.mat-row {
+  height: 24px;
+}
