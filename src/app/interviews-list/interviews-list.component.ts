@@ -10,7 +10,7 @@ import {MatPaginator, MatTableDataSource} from '@angular/material';
 })
 export class InterviewsListComponent implements OnInit {
 
-  displayedColumns: string[] = ['company', 'title', 'date', 'status'];
+  displayedColumns: string[] = ['interview', 'interviewer', 'Date',  'RESULT'];
   dataSource;
   constructor(private ApiService: ApiService) { }
 
@@ -18,7 +18,7 @@ export class InterviewsListComponent implements OnInit {
 
   ngOnInit() {
     this.ApiService.postedJobSubject.subscribe(()=>{
-      this.dataSource = new MatTableDataSource(this.ApiService.postedJobsfromFB);
+      this.dataSource = new MatTableDataSource(this.ApiService.interviewedListFromFB);
       this.dataSource.paginator = this.paginator; 
     });     
   }

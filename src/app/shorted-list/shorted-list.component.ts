@@ -9,7 +9,7 @@ import {MatPaginator, MatTableDataSource} from '@angular/material';
 })
 export class ShortedListComponent implements OnInit {
 
-  displayedColumns: string[] = ['company', 'title', 'date', 'status'];
+  displayedColumns: string[] = ['name', 'workat', 'CTC', 'EXP'];
   dataSource;
   constructor(private ApiService: ApiService) { }
 
@@ -17,7 +17,7 @@ export class ShortedListComponent implements OnInit {
 
   ngOnInit() {
     this.ApiService.postedJobSubject.subscribe(()=>{
-      this.dataSource = new MatTableDataSource(this.ApiService.postedJobsfromFB);
+      this.dataSource = new MatTableDataSource(this.ApiService.shortedListFromFB);
       this.dataSource.paginator = this.paginator; 
     }); 
   }

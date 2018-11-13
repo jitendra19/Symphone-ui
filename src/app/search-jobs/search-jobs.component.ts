@@ -21,12 +21,16 @@ export class SearchJobsComponent implements OnInit {
     //   }
     // );
     this.ApiService.getPostedJobs();
+    this.ApiService.getinterviewedList();
+    this.ApiService.getShortedList();
     this.refresh();
   }
 
   refresh() {
     setInterval(()=>{
       this.ApiService.getPostedJobs();
-    }, 10000)
+      this.ApiService.getinterviewedList();
+      this.ApiService.getShortedList();
+    }, 10000);
   }
 }
