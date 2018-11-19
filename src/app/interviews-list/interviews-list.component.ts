@@ -20,6 +20,7 @@ export class InterviewsListComponent implements OnInit {
     this.ApiService.postedJobSubject.subscribe(()=>{
       this.dataSource = new MatTableDataSource(this.ApiService.interviewedListFromFB);
       this.dataSource.paginator = this.paginator; 
+      this.dataSource.filter = this.ApiService.searchObj && this.ApiService.searchObj.searchText && this.ApiService.searchObj.searchText.trim().toLowerCase();
     });     
   }
 

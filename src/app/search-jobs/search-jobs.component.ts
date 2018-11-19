@@ -1,5 +1,6 @@
 import { ApiService } from './../api.service';
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, ViewChild } from '@angular/core';
+import { NgForm } from '@angular/forms';
 
 @Component({
   selector: 'app-search-jobs',
@@ -7,6 +8,7 @@ import { Component, OnInit } from '@angular/core';
   styleUrls: ['./search-jobs.component.scss']
 })
 export class SearchJobsComponent implements OnInit {
+  @ViewChild('f') searchForm: NgForm;
 
   constructor(private ApiService: ApiService) { }
 
@@ -26,11 +28,14 @@ export class SearchJobsComponent implements OnInit {
     this.refresh();
   }
 
+  search() {
+    this.refresh();
+  }
+
   refresh() {
-    setInterval(()=>{
-      this.ApiService.getPostedJobs();
-      this.ApiService.getinterviewedList();
-      this.ApiService.getShortedList();
-    }, 10000);
+    this.ApiService.searchObj = this.searchForm.value;
+    this.ApiService.getPostedJobs();
+    this.ApiService.getinterviewedList();
+    this.ApiService.getShortedList();
   }
 }

@@ -1,7 +1,8 @@
 <div style="border-bottom: solid 1px grey;">
-    <form class="search-form">
-      <mat-checkbox style="margin:50px">open</mat-checkbox>
-      <mat-checkbox style="margin:50px">closed</mat-checkbox>
-      <input style="display: 'inline-block'" placeholder="Search Title">    
+    <form class="search-form" #f="ngForm" (ngSubmit)='search()'>
+      <mat-checkbox style="margin:50px" ngModel  name="isOpen" >open</mat-checkbox>
+      <mat-checkbox style="margin:50px" ngModel name='isclosed'>closed</mat-checkbox>
+      <input style="display: 'inline-block'" placeholder="Search Title" ngModel name='searchText'>    
+      <button type='submit' style="display: 'inline-block'">Search</button>
     </form>
 </div>

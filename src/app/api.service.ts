@@ -5,11 +5,18 @@ import {Subject} from 'rxjs/Subject';
 
 @Injectable()
 export class ApiService {
+    searchText: string = ''
     postedJobsfromFB: any = [];
     interviewedListFromFB: any = [];
     shortedListFromFB: any = [];
     constructor(private http: Http) {}
     postedJobSubject = new Subject();
+    searchSubject = new Subject();
+    searchObj = {
+        isOpen: false,
+        isclosed: false,
+        searchText: ''
+      };
 
     storejobs() {        
         // postedJobsdata.forEach((a)=>{
@@ -25,11 +32,18 @@ export class ApiService {
         .subscribe(
             (response: Response) => {
                 const data = <any>response.json();    
-                this.postedJobsfromFB =     []
-                for (let a in data) {                       
-                    this.postedJobsfromFB.push(data[a]);
-                }
-                this.postedJobSubject.next();
+                this.postedJobsfromFB = [];       
+                    for (let a in data) {
+                        if(this.searchObj.isclosed !== this.searchObj.isOpen) {
+                            if(this.searchObj.isclosed && data[a].status === 'closed')
+                            this.postedJobsfromFB.push(data[a]);
+                            if(this.searchObj.isOpen && data[a].status === 'open')
+                            this.postedJobsfromFB.push(data[a]);
+                        }else {
+                            this.postedJobsfromFB.push(data[a]);
+                        }
+                    }                    
+                    this.postedJobSubject.next();
             }
         );
     }

@@ -18,6 +18,7 @@ export class ShortedListComponent implements OnInit {
   ngOnInit() {
     this.ApiService.postedJobSubject.subscribe(()=>{
       this.dataSource = new MatTableDataSource(this.ApiService.shortedListFromFB);
+      this.dataSource.filter = this.ApiService.searchObj && this.ApiService.searchObj.searchText && this.ApiService.searchObj.searchText.trim().toLowerCase();
       this.dataSource.paginator = this.paginator; 
     }); 
   }
